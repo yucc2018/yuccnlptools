@@ -15,7 +15,7 @@ if stale_dist.exists():
 
 
 setup(name='yuccnlptools',
-        version='0.1.1',
+        version='0.0.1',
         description='基于pytorch & transformers的文本工具，用于分类、生成等的训练，用于线上服务的部署',
         long_description=open('README.md', 'r', encoding='utf-8').read(),
         long_description_content_type='text/markdown',
