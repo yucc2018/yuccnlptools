@@ -24,5 +24,9 @@ setup(name='yuccnlptools',
         author_email='6506666@gmail.com',
         license='MIT',
         packages=['yuccnlptools'],
+        install_requires=[
+            "tokenizers",
+            "tqdm",
+            "transformers >= 3.0.0"],
         zip_safe=False)
 
