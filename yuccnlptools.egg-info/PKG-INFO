@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: yuccnlptools
-Version: 0.0.1
+Version: 0.0.2
 Summary: 基于pytorch & transformers的文本工具，用于分类、生成等的训练，用于线上服务的部署
 Home-page: https://github.com/yucc2018/yuccnlptools
 Author: Chen-Chen Yu
