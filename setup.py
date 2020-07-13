@@ -15,7 +15,7 @@ if stale_dist.exists():
 
 
 setup(name='yuccnlptools',
-        version='0.0.1',
+        version='0.0.2',
         description='基于pytorch & transformers的文本工具，用于分类、生成等的训练，用于线上服务的部署',
         long_description=open('README.md', 'r', encoding='utf-8').read(),
         long_description_content_type='text/markdown',
@@ -27,6 +27,7 @@ setup(name='yuccnlptools',
         install_requires=[
             "tokenizers",
             "tqdm",
-            "transformers >= 3.0.0"],
+            "transformers >= 3.0.0",
+            "yucctools"],
         zip_safe=False)
 
