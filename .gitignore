@@ -7,5 +7,6 @@ __pycache__
 *.zip
 *.pyc
 *.lprof
+*.log
 .ipynb_checkpoints
 tmp/*
