@@ -14,12 +14,14 @@ import yucctools as yt
 
 logger = yt.logger()
 
+
 def genernal_convert_examples_to_features(
         examples,
         tokenizer,
         max_length = None,
         label_list = None,
-        output_mode = None
+        output_mode = None,
+        log = True,
     ):
     if max_length is None:
         max_length = tokenizer.max_len
@@ -52,10 +54,11 @@ def genernal_convert_examples_to_features(
         feature = transformers.InputFeatures(**inputs, label=labels[i])
         features.append(feature)
 
-    for i, example in enumerate(examples[:5]):
-        logger.info("*** Example ***")
-        logger.info("guid: %s" % (example.guid))
-        logger.info("features: %s" % features[i])
+    if log:
+        for i, example in enumerate(examples[:5]):
+            logger.info("*** Example ***")
+            logger.info("guid: %s" % (example.guid))
+            logger.info("features: %s" % features[i])
 
     return features
 
@@ -209,7 +212,8 @@ class SmpRankProcessor(transformers.DataProcessor):
     def get_test_examples(self):
         return self.test_examples
 
-    def get_labels(self):
+    @classmethod
+    def get_labels(cls):
         return ['体育', '数码产品', '电影', '美食', '音乐']
 
 genernal_tasks_num_labels = {

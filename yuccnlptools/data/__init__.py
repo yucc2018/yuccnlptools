@@ -4,6 +4,7 @@ from .processors import (
         genernal_convert_examples_to_features,
         genernal_output_modes,
         genernal_processors,
+        SmpRankProcessor,
 )
 
 from .metrics import genernal_compute_metrics

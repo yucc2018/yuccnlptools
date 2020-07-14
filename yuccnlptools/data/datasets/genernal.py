@@ -4,14 +4,15 @@ import time
 import dataclasses
 import enum
 import typing
-# from dataclasses import dataclass, field
-# from enum import Enum
-# from typing import List, Optional, Union
 
 import torch
 from filelock import FileLock
 import transformers
-import yuccnlptools as ynt
+# import yuccnlptools as ynt
+
+from ..processors import genernal_processors
+from ..processors import genernal_output_modes
+from ..processors import genernal_convert_examples_to_features
 
 
 logger = logging.getLogger(__name__)
@@ -71,13 +72,9 @@ class GenernalDataset(torch.utils.data.dataset.Dataset):
         mode: typing.Union[str, Split] = Split.train,
         cache_dir: typing.Optional[str] = None,
     ):
-        self.args = args
-        if args.task_name in transformers.glue_processors:
-            self.processor = glue_processors[args.task_name]()
-            self.output_mode = glue_output_modes[args.task_name]
-        elif args.task_name in ['smp-rank']:
-            self.processor = ynt.genernal_processors[args.task_name](args)
-            self.output_mode = ynt.genernal_output_modes[args.task_name]
+        if args.task_name in ['smp-rank']:
+            self.processor = genernal_processors[args.task_name](args)
+            self.output_mode = genernal_output_modes[args.task_name]
         else:
             raise Error('task name error')
         if isinstance(mode, str):
@@ -92,17 +89,7 @@ class GenernalDataset(torch.utils.data.dataset.Dataset):
                 mode.value, tokenizer.__class__.__name__, str(args.max_seq_length), args.task_name,
             ),
         )
-        label_list = self.processor.get_labels()
-        if args.task_name in ["mnli", "mnli-mm"] and tokenizer.__class__ in (
-            transformers.RobertaTokenizer,
-            transformers.RobertaTokenizerFast,
-            transformers.XLMRobertaTokenizer,
-            transformers.BartTokenizer,
-            transformers.BartTokenizerFast,
-        ):
-            # HACK(label indices are swapped in RoBERTa pretrained model)
-            label_list[1], label_list[2] = label_list[2], label_list[1]
-        self.label_list = label_list
+        self.label_list = self.processor.get_labels()
 
         # Make sure only the first process in distributed training processes the dataset,
         # and the others will use the cache.
@@ -118,27 +105,7 @@ class GenernalDataset(torch.utils.data.dataset.Dataset):
             else:
                 logger.info(f"Creating features from dataset file at {args.data_dir}")
                 
-                if args.task_name in transformers.glue_processors:
-                    if mode == Split.dev:
-                        examples = self.processor.get_dev_examples(args.data_dir)
-                    elif mode == Split.test:
-                        examples = self.processor.get_test_examples(args.data_dir)
-                    else:
-                        examples = self.processor.get_train_examples(args.data_dir)
-                    if limit_length is not None:
-                        examples = examples[:limit_length]
-
-                    if limit_length is not None:
-                        examples = examples[:limit_length]
-
-                    features = glue_convert_examples_to_features(
-                        examples,
-                        tokenizer,
-                        max_length=args.max_seq_length,
-                        label_list=label_list,
-                        output_mode=self.output_mode,
-                    )
-                elif args.task_name in ['smp-rank']:
+                if args.task_name in ['smp-rank']:
                     if mode == Split.dev:
                         examples = self.processor.get_dev_examples()
                     elif mode == Split.test:
@@ -151,7 +118,7 @@ class GenernalDataset(torch.utils.data.dataset.Dataset):
                     if limit_length is not None:
                         examples = examples[:limit_length]
         
-                    features = ynt.genernal_convert_examples_to_features(
+                    features = genernal_convert_examples_to_features(
                             examples=examples,
                             tokenizer=tokenizer,
                             max_length=args.max_seq_length,
