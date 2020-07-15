@@ -7,4 +7,9 @@ from .processors import (
         SmpRankProcessor,
 )
 
+from .datasets import (
+        GenernalDataset,
+        GenernalDataTrainingArguments,
+)
+
 from .metrics import genernal_compute_metrics

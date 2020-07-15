@@ -122,7 +122,7 @@ class GenernalDataset(torch.utils.data.dataset.Dataset):
                             examples=examples,
                             tokenizer=tokenizer,
                             max_length=args.max_seq_length,
-                            label_list=label_list,
+                            label_list=self.label_list,
                             output_mode=self.output_mode,
                     )
 

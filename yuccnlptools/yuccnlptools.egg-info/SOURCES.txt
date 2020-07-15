@@ -1,14 +1,5 @@
 README.md
 setup.py
-yuccnlptools/__init__.py
-yuccnlptools/hello.py
-yuccnlptools/lightning_base.py
-yuccnlptools/test_examples.py
-yuccnlptools/xla_spawn.py
-yuccnlptools.egg-info/PKG-INFO
-yuccnlptools.egg-info/SOURCES.txt
-yuccnlptools.egg-info/dependency_links.txt
-yuccnlptools.egg-info/top_level.txt
 yuccnlptools/data/__init__.py
 yuccnlptools/data/datasets/__init__.py
 yuccnlptools/data/datasets/genernal.py
@@ -38,3 +29,7 @@ yuccnlptools/textclassification/run_text_classification.py
 yuccnlptools/textclassification/run_tf_glue.py
 yuccnlptools/textclassification/run_xnli.py
 yuccnlptools/textclassification/serve_text_classification.py
+yuccnlptools/yuccnlptools.egg-info/PKG-INFO
+yuccnlptools/yuccnlptools.egg-info/SOURCES.txt
+yuccnlptools/yuccnlptools.egg-info/dependency_links.txt
+yuccnlptools/yuccnlptools.egg-info/top_level.txt

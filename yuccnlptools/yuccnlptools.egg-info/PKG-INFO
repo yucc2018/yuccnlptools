@@ -1,11 +1,11 @@
 Metadata-Version: 2.1
 Name: yuccnlptools
-Version: 0.0.11
+Version: 0.0.9
 Summary: 基于pytorch & transformers的文本工具，用于分类、生成等的训练，用于线上服务的部署
 Home-page: https://github.com/yucc2018/yuccnlptools
 Author: Chen-Chen Yu
 Author-email: 6506666@gmail.com
-License: UNKNOWN
+License: MIT
 Description: ### yuccnlptools
         
         常用的nlp工具积累。
@@ -37,8 +37,5 @@ Description: ### yuccnlptools
         pypi网页：https://pypi.org/project/yuccnlptools/
         
 Platform: UNKNOWN
-Classifier: Programming Language :: Python :: 3
-Classifier: License :: OSI Approved :: MIT License
-Classifier: Operating System :: OS Independent
 Requires-Python: >=3.5.0
 Description-Content-Type: text/markdown

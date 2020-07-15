@@ -49,11 +49,11 @@ class PredictDataset(torch.utils.data.dataset.Dataset):
 
 class TextClassificationModel:
 
-    def __init__(self, args=None):
+    def __init__(self, model_name_or_path, args=None):
         # 使用cpu或者gpu
         device = 'cuda' if torch.cuda.is_available() else 'cpu'
         # 使用的模型文件
-        model_name_or_path = '/dfsdata2/yucc1_data/output/smp-rank-online'
+        # model_name_or_path = '/dfsdata2/yucc1_data/output/smp-rank-online'
         tokenizer = transformers.AutoTokenizer.from_pretrained(model_name_or_path)
         model = transformers.AutoModelForSequenceClassification.from_pretrained(model_name_or_path)
         # 转入device，并设置为eval
@@ -113,7 +113,8 @@ class TextClassificationModel:
         topic_logits = topic_logits.tolist()
         results = list(zip(topic_logits, texts))
         results = sorted(results, key=lambda x:x[0], reverse=True)
-        print(results)
+        return results
+        # print(results)
 
 
 if __name__ == '__main__':
