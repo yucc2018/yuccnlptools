@@ -2,6 +2,7 @@
 build/*
 dist/*
 yucctools.egg-info/*
+yuccnlptools.egg-info/*
 log/*
 __pycache__
 *.zip
