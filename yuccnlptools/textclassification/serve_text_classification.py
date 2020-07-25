@@ -70,10 +70,11 @@ class TextClassificationModel:
         self.label_list = label_list
         self.max_seq_length = 30
         self.output_mode = 'classification'
-        self.batch_size = 8
+        # self.batch_size = 8
 
     def batch_predict(self, texts, topic):
-        assert len(texts) == self.batch_size
+        # assert len(texts) == self.batch_size
+        batch_size = len(texts)
         examples = []
         for index, text in enumerate(texts):
             guid = f'predict-{index}'
@@ -95,7 +96,7 @@ class TextClassificationModel:
         sampler = torch.utils.data.sampler.SequentialSampler(predict_dataset)
         dataloader = torch.utils.data.dataloader.DataLoader(
                 predict_dataset,
-                batch_size=self.batch_size,
+                batch_size=batch_size,
                 collate_fn=transformers.default_data_collator,
                 drop_last=False)
         for inputs in dataloader:
@@ -112,7 +113,7 @@ class TextClassificationModel:
                 topic_logits = logits[:, topic_index]
         topic_logits = topic_logits.tolist()
         results = list(zip(topic_logits, texts))
-        results = sorted(results, key=lambda x:x[0], reverse=True)
+        # results = sorted(results, key=lambda x:x[0], reverse=True)
         return results
         # print(results)
 

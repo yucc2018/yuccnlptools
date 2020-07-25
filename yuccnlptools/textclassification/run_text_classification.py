@@ -14,7 +14,8 @@ import transformers
 import yucctools as yt
 import yuccnlptools as ynt
 
-logger = yt.logger()
+# 只在控制台展示，不在日志里展示
+logger = yt.logger(filehandler=False)
 
 
 @dataclass
