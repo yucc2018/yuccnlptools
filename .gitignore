@@ -4,6 +4,7 @@ dist/*
 yucctools.egg-info/*
 yuccnlptools.egg-info/*
 log/*
+runs/*
 __pycache__
 *.zip
 *.pyc
