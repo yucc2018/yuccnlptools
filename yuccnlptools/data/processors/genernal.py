@@ -12,7 +12,7 @@ import transformers
 import yucctools as yt
 
 
-logger = yt.logger()
+logger = yt.logger(filehandler=False)
 
 
 def genernal_convert_examples_to_features(

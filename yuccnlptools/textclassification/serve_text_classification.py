@@ -16,7 +16,7 @@ import yuccnlptools as ynt
 # from ..data.processors.genernal import genernal_convert_examples_to_features
 
 
-logger = yt.logger()
+logger = yt.logger(filehandler=False)
 
 
 @dataclasses.dataclass
